@@ -138,6 +138,10 @@
 </main>
 
 <style>
+  :global(body) {
+      background-color: mediumseagreen;
+  }
+
   main {
     text-align: center;
   }
