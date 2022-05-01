@@ -4,7 +4,7 @@
   import { cellsArePairable } from "./computePairable";
 
   const NO_SELECTED = -1;
-  const COLUMNS_NUMBER = 6;
+  const COLUMNS_NUMBER = 8;
   const ROWS_TO_ADD = 4;
   const PAIR_CLEAR_POINTS = 5;
   const ROW_CLEAR_POINTS = 10;
@@ -54,34 +54,41 @@
 
   function cleanLines() {
     const rows = cellList.length / COLUMNS_NUMBER;
+
     let rowsToDelete = [];
+
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < COLUMNS_NUMBER; j++) {
         if (cellList[i * COLUMNS_NUMBER + j].pristine) {
-          continue;
+          break;
         } else if (j === COLUMNS_NUMBER - 1) {
           rowsToDelete.unshift(i);
         }
       }
     }
+
     for (let row of rowsToDelete) {
-      cellList.splice(row * COLUMNS_NUMBER, COLUMNS_NUMBER);
+      new Promise((resolve) => setTimeout(resolve, 600)).then(() => {
+        cellList.splice(row * COLUMNS_NUMBER, COLUMNS_NUMBER);
+        cellList = cellList;
+      });
       score += ROW_CLEAR_POINTS;
     }
-    cellList = cellList;
   }
 
-  function addCells() {
+  async function addCells() {
     for (let i = 0; i < COLUMNS_NUMBER * ROWS_TO_ADD; i++) {
-      cellList.push({
-        pristine: true,
-        value: Math.floor(Math.random() * 9 + 1),
+      new Promise((resolve) => setTimeout(resolve, 30 * i)).then(() => {
+        cellList.push({
+          pristine: true,
+          value: Math.floor(Math.random() * 9 + 1),
+        });
+        cellList = cellList;
       });
     }
+
     // Dummy data for tests
     // cellList.push({ pristine: false, value: 2 });
-
-    cellList = cellList;
     times_added++;
   }
 
