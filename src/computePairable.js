@@ -31,7 +31,7 @@ function isClosestRightPristine(cellList, selectedIndex, newIndex) {
   let i = selectedIndex;
   do {
     i++;
-    if (i === cellList.length) {
+    if (i >= cellList.length) {
       i = 0;
     }
   } while (!cellList[i].pristine);

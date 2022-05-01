@@ -68,6 +68,7 @@
     }
 
     for (let row of rowsToDelete) {
+      console.log("Row removed : ", row);
       new Promise((resolve) => setTimeout(resolve, 600)).then(() => {
         cellList.splice(row * COLUMNS_NUMBER, COLUMNS_NUMBER);
         cellList = cellList;
