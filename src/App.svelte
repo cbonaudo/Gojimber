@@ -7,6 +7,7 @@
   const COLUMNS_NUMBER = 6;
   const ROWS_TO_ADD = 4;
   const PAIR_CLEAR_POINTS = 5;
+  const ROW_CLEAR_POINTS = 10;
   const SUM_TO_MATCH = 10;
 
   let score = 0;
@@ -44,9 +45,30 @@
       score += PAIR_CLEAR_POINTS;
 
       selectedIndex = NO_SELECTED;
+
+      cleanLines();
     } else {
       selectedIndex = newIndex;
     }
+  }
+
+  function cleanLines() {
+    const rows = cellList.length / COLUMNS_NUMBER;
+    let rowsToDelete = [];
+    for (let i = 0; i < rows; i++) {
+      for (let j = 0; j < COLUMNS_NUMBER; j++) {
+        if (cellList[i * COLUMNS_NUMBER + j].pristine) {
+          continue;
+        } else if (j === COLUMNS_NUMBER - 1) {
+          rowsToDelete.unshift(i);
+        }
+      }
+    }
+    for (let row of rowsToDelete) {
+      cellList.splice(row * COLUMNS_NUMBER, COLUMNS_NUMBER);
+      score += ROW_CLEAR_POINTS;
+    }
+    cellList = cellList;
   }
 
   function addCells() {
@@ -56,6 +78,9 @@
         value: Math.floor(Math.random() * 9 + 1),
       });
     }
+    // Dummy data for tests
+    // cellList.push({ pristine: false, value: 2 });
+
     cellList = cellList;
     times_added++;
   }
@@ -80,6 +105,8 @@
     <br />
     Also vertically, with column wrapping (first of the column can match last of
     the column).
+    <br />
+    You can add more rows if you are stuck with the "+" button.
   </p>
   <div
     class="cell-grid"
@@ -95,6 +122,7 @@
           selected={selectedIndex == index}
           on:click={() => cell.pristine && onSelectCell(index)}
         />
+        <!-- <span>{index}</span> -->
       </div>
     {/each}
   </div>

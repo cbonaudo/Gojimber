@@ -3,13 +3,17 @@ npm start
 
 
 # Deploy
-## Build the application
 npm run build
 
-## Commit and push the changes
-git add .
-git commit -m "initial gh-pages commit"
-git push origin gh-pages
+Commit and push the changes on main
 
-## Deploy the code with the gh-pages module
+git checkout gh-pages
+
+git reset --hard origin/main
+
+// (ON GH-PAGES ONLY)
+git push -f 
+
 node ./gh-pages.js
+
+git checkout main
