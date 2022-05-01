@@ -1,4 +1,5 @@
 <script>
+  import { onMount } from "svelte";
   import Cell from "./Cell.svelte";
   import { cellsArePairable } from "./computePairable";
 
@@ -9,6 +10,7 @@
   const SUM_TO_MATCH = 10;
 
   let score = 0;
+  let times_added = 0;
   let cellList = [];
   let selectedIndex = NO_SELECTED;
 
@@ -55,11 +57,30 @@
       });
     }
     cellList = cellList;
+    times_added++;
   }
+
+  onMount(() => {
+    addCells();
+  });
 </script>
 
 <main>
-  <p>Score: {score} - Sum to match: {SUM_TO_MATCH}</p>
+  <p>
+    Score: {score} - Sum to match: {SUM_TO_MATCH} - Times added: {times_added}
+  </p>
+  <p>
+    You can match pairs, and addition (2 numbers) that gives {SUM_TO_MATCH}.
+    <br />
+    You can pair two number for matchchecking if they are next to each other on the
+    line (grayed out numbers don't count)
+    <br />
+    or if they wrap around the edge (e.g: last of first line and first of second
+    line) or around the start (first number and last number of the grid can match).
+    <br />
+    Also vertically, with column wrapping (first of the column can match last of
+    the column).
+  </p>
   <div
     class="cell-grid"
     style:grid-template-columns={[...Array(COLUMNS_NUMBER)]
@@ -67,7 +88,7 @@
       .join(" ")}
   >
     {#each cellList as cell, index}
-      <div>	
+      <div>
         <Cell
           pristine={cell.pristine}
           value={cell.value}

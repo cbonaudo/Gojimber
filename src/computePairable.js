@@ -13,8 +13,6 @@ export function cellsArePairable(
 }
 
 function isClosestLeftPristine(cellList, selectedIndex, newIndex) {
-  if (selectedIndex == cellList.length) return false;
-
   let i = selectedIndex;
   do {
     i--;
@@ -30,8 +28,6 @@ function isClosestLeftPristine(cellList, selectedIndex, newIndex) {
 }
 
 function isClosestRightPristine(cellList, selectedIndex, newIndex) {
-  if (selectedIndex == 0) return false;
-
   let i = selectedIndex;
   do {
     i++;
