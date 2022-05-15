@@ -135,7 +135,7 @@
     {/each}
   </div>
 
-  <button on:click={addCells} id="add-button">a+</button>
+  <button on:click={addCells} id="add-button">+</button>
 </main>
 
 <style>
