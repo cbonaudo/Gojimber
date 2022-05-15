@@ -12,6 +12,7 @@
     : pristine
     ? "darkslategrey"
     : "grey"}
+  style:opacity={pristine ? 1 : 0.5}
 >
   {value}
 </button>

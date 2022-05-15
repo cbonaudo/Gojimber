@@ -70,7 +70,7 @@
     for (let row of rowsToDelete) {
       console.log("Row removed : ", row);
       new Promise((resolve) => setTimeout(resolve, 600)).then(() => {
-        cellList.splice(row * COLUMNS_NUMBER, COLUMNS_NUMBER);
+        console.log(cellList.splice(row * COLUMNS_NUMBER, COLUMNS_NUMBER));
         cellList = cellList;
       });
       score += ROW_CLEAR_POINTS;
@@ -100,7 +100,7 @@
 
 <main>
   <p>
-    Score: {score} - Sum to match: {SUM_TO_MATCH} - Times added: {times_added}
+    <!-- Score: {score} - Sum to match: {SUM_TO_MATCH} - Times added: {times_added} -->
   </p>
   <p>
     You can match pairs, and addition (2 numbers) that gives {SUM_TO_MATCH}.
@@ -135,12 +135,12 @@
     {/each}
   </div>
 
-  <button on:click={addCells}>+</button>
+  <button on:click={addCells} id="add-button">a+</button>
 </main>
 
 <style>
   :global(body) {
-      background-color: mediumseagreen;
+    background-color: mediumseagreen;
   }
 
   main {
