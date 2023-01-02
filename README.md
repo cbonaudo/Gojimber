@@ -1,5 +1,8 @@
 Jeu de match de pairs de nombres dans différentes dimensions, avec une durée théoriquement infinie.
 
+Est hébergé ici :
+https://cbonaudo.github.io/Gojimber/
+
 npm i
 npm start
 
