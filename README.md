@@ -1,3 +1,5 @@
+Jeu de match de pairs de nombres dans différentes dimensions, avec une durée théoriquement infinie.
+
 npm i
 npm start
 
